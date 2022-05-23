@@ -1,29 +1,6 @@
 const roomModel = require("../models/room.model");
 const hotelModel = require("../models/hotel.model");
 const bookingModel = require("../models/booking.model");
-// exports.addRoomToHotel = function (req, res) {
-//   console.log("RequestBody" + req.body.hotel_id);
-//   hotelModel
-//     .findOne({ _id: req.body.hotel_id }, function (err, hotel) {
-//       roomModel
-//         .findOne({ _id: req.body.room_id }, function (err, room) {
-//           console.log("Room" + room);
-//           hotel.rooms.push(room);
-//           hotel.save();
-//         })
-//         .then((data) => {
-//           console.log(data);
-//         });
-//     })
-//     .then((data) => {
-//       res.json(data);
-//       console.log("Success" + data);
-//     })
-
-//     .catch((err) => {
-//       console.log("Error");
-//     });
-// };
 
 exports.getRoomsByHotel = function (req, res) {
   hotelModel
@@ -50,7 +27,6 @@ exports.addRoom = function (req, res) {
   })
     .save()
     .then((result) => {
-      console.log("Adding room" + result);
       res.send(result);
 
       hotelModel
@@ -60,7 +36,6 @@ exports.addRoom = function (req, res) {
         })
         .then((data) => {
           res.json(data);
-          console.log("Success" + data);
         })
 
         .catch((err) => {
@@ -72,42 +47,28 @@ exports.addRoom = function (req, res) {
     });
 };
 
-exports.updateRoom= function (req, res) {
-  console.log("Room id"+req.body.room_id);
-  roomModel.findOneAndUpdate({_id:req.body.room_id},
+exports.updateRoom = function (req, res) {
+  roomModel.findOneAndUpdate(
+    { _id: req.body.room_id },
     {
-    roomtype: req.body.roomtype,
+      roomtype: req.body.roomtype,
 
-    price: req.body.price,
+      price: req.body.price,
 
-    capacity: req.body.capacity,
-    ratings: req.body.ratings,
+      capacity: req.body.capacity,
+      ratings: req.body.ratings,
 
-    image: req.body.image,
-
-  
-  }, function(err, data) {
-      if(err){
-        console.log(data+"Update Error");
+      image: req.body.image,
+    },
+    function (err, data) {
+      if (err) {
         return res.send(err);
-      }
-      else{
-        console.log(data+"Update Feature");
+      } else {
         return res.send(data);
       }
-    })
-
-}
-
-
-
-
-
-
-
-
-
-
+    }
+  );
+};
 
 exports.getRoomDetailsById = function (req, res) {
   roomModel
@@ -134,38 +95,12 @@ exports.bookRoom = function (req, res) {
   })
     .save()
     .then((result) => {
-      // console.log("Booked Result"+result)
       res.send(result);
     })
     .catch((err) => {
-      console.log("Booked Result" + err);
       res.send(err);
     });
 };
-
-// exports.addBookingToRoom=function(req, res) {
-
-//   roomModel.findById(req.body.room_id).then((room) => {
-//     room.updateOne(
-
-//       {  bookings: req.body.bookings},
-//       {multi:true},
-//       function(err, numberAffected){
-//         if(err) {
-//           console.log("err");
-//         }
-//         else
-//         {  console.log(numberAffected);
-//             res.send(numberAffected);
-//         }
-//       }
-//     )
-//   }).catch(function(err){
-//     console.log("err");
-//     res.send(err);
-//   })
-
-// }
 
 exports.addBookingToRoom = function (req, res) {
   roomModel
@@ -176,7 +111,6 @@ exports.addBookingToRoom = function (req, res) {
     })
     .then((data) => {
       res.json(data);
-      //  console.log("Success" + data);
     })
 
     .catch((err) => {
@@ -187,10 +121,8 @@ exports.addBookingToRoom = function (req, res) {
 exports.deleteRoomsofDeletedHotel = function (req, res) {
   roomModel.remove({ hotel_id: req.body.hotel_id }, function (err, data) {
     if (err) {
-      console.log("Error in deleteRoomsofDeletedHotel");
       return res.send(err);
     } else {
-      console.log("Deleted seuccwesfully" + data);
       return res.send(data);
     }
   });
@@ -199,10 +131,8 @@ exports.deleteRoomsofDeletedHotel = function (req, res) {
 exports.deleteRoom = function (req, res) {
   roomModel.findByIdAndDelete(req.body.room_id, function (err, result) {
     if (err) {
-      console.log(err);
       res.send(err);
     } else {
-      console.log(result);
       res.send(result);
     }
   });

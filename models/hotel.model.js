@@ -1,9 +1,6 @@
 const mongoose = require("mongoose");
 
 const hotelSchema = new mongoose.Schema({
-
-   
-
   name: {
     type: String,
     required: true,
@@ -20,9 +17,8 @@ const hotelSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  rooms:
-  [{ type: mongoose.SchemaTypes.ObjectId, ref: 'room' }],
- 
+  rooms: [{ type: mongoose.SchemaTypes.ObjectId, ref: "room" }],
+
   contact_no: {
     type: Number,
     required: true,
@@ -31,19 +27,12 @@ const hotelSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  breakfast:{
-    type:Boolean,
+  breakfast: {
+    type: Boolean,
   },
-  offer:{
-    type:String,
-  }
+  offer: {
+    type: String,
+  },
 });
-
-
-
-
-
-
-
 
 module.exports = mongoose.model("hotel", hotelSchema);
