@@ -10,7 +10,7 @@ const refreshSchema = require("../models/refreshToken.js");
 const userModel = require("../models/user.model");
 var bcrypt = require("bcryptjs");
 require("dotenv").config();
-
+router.post("/cancelBooking",userController.cancelBooking);
 router.post("/bookRoom", roomController.bookRoom);
 router.post(
   "/findBookingDetailsbyUserId",

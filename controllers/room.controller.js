@@ -82,6 +82,9 @@ exports.getRoomDetailsById = function (req, res) {
 };
 
 exports.bookRoom = function (req, res) {
+
+  console.log("fromDates"+req.body.fromDate);
+  console.log("toDates"+req.body.toDate);
   const booking = new bookingModel({
     room_id: req.body.room_id,
     room_type: req.body.room_type,
@@ -96,6 +99,7 @@ exports.bookRoom = function (req, res) {
     .save()
     .then((result) => {
       res.send(result);
+      console.log("RoomBooking"+result);
     })
     .catch((err) => {
       res.send(err);
@@ -111,6 +115,8 @@ exports.addBookingToRoom = function (req, res) {
     })
     .then((data) => {
       res.json(data);
+
+      console.log("AddBooking to room"+data);
     })
 
     .catch((err) => {
