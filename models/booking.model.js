@@ -28,6 +28,10 @@ const bookingSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+},
+
+{
+  strict: true,
 });
 
 module.exports = mongoose.model("booking", bookingSchema);
