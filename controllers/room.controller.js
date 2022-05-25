@@ -83,8 +83,8 @@ exports.getRoomDetailsById = function (req, res) {
 
 exports.bookRoom = function (req, res) {
 
-  console.log("fromDates"+typeof req.body.fromDate);
-  console.log("toDates"+req.body.toDate);
+  console.log("fromDates"+typeof req.body.datesInBooking);
+  console.log("toDates"+req.body.datesInBooking);
   fromDate1=req.body.fromDate;
   toDate1=req.body.toDate;
   const booking = new bookingModel({
@@ -93,8 +93,9 @@ exports.bookRoom = function (req, res) {
 
     hotel_name: req.body.hotel_name,
 
-    fromDate: new Date(fromDate1),
-    toDate: new Date(toDate1),
+    // fromDate: (fromDate1),
+    // toDate: (toDate1),
+    dates:req.body.datesInBooking,
     price: req.body.price,
     user_id: req.body.user_id,
   })

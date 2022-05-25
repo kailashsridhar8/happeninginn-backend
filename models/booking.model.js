@@ -12,12 +12,8 @@ const bookingSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  fromDate: {
-    type: String,
-    required: true,
-  },
-  toDate: {
-    type: String,
+  dates: {
+    type: Object,
     required: true,
   },
   price: {
