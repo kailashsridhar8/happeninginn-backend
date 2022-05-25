@@ -19,6 +19,7 @@ router.post(
 
 router.post("/addBookingToRoom", roomController.addBookingToRoom);
 
+router.post("/addBook",bookingController.addBook);
 // router.post("/signup", async (req, res, next) => {
 //   const username = req.body.username;
 //   const phone = req.body.phone;

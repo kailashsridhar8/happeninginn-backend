@@ -10,6 +10,9 @@ var userSchema = new mongoose.Schema({
     type: String,
     default: "user",
   },
+
+  
+
 });
 
 userSchema.methods.isValidPassword = async function (password) {

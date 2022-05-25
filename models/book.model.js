@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const bookingSchema = mongoose.Schema({
+const bookSchema = mongoose.Schema({
   room_id: {
     type: String,
     required: true,
@@ -30,4 +30,4 @@ const bookingSchema = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("booking", bookingSchema);
+module.exports = mongoose.model("book", bookSchema);
